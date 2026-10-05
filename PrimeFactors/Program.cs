@@ -45,5 +45,37 @@ namespace PrimeFactors
 
       return true;
     }
+
+    /// <summary>Calculate if an Integer number is prime.</summary>
+    /// <param name="number">The number to calculate its primality.</param>
+    /// <returns>Returns True if the number is a prime, False otherwise.</returns>
+    public static bool IsPrime(int number)
+    {
+      if (number <= 1)
+      {
+        return false;
+      }
+
+      if (number == 2 || number == 3 || number == 5 || number == 7)
+      {
+        return true;
+      }
+
+      if (number % 2 == 0 || number % 3 == 0 || number % 5 == 0 || number % 7 == 0)
+      {
+        return false;
+      }
+
+      int sqrt = (int)Math.Sqrt(number);
+      for (int divisor = 11; divisor <= sqrt; divisor += 2)
+      {
+        if (number % divisor == 0)
+        {
+          return false;
+        }
+      }
+
+      return true;
+    }
   }
 }
