@@ -7,7 +7,8 @@ print("Search for BigInteger Prime");
 print("Recherche des facteurs diviseurs d'un nombre");
 
 BigInteger startNumber = ulong.MaxValue;
-BigInteger endNumber = startNumber + 10;
+BigInteger endNumber = startNumber + 3;
+print($"Calculating prime factors for numbers {Environment.NewLine}from {startNumber.ToString("N0")} {Environment.NewLine}to {endNumber.ToString("N0")}");
 
 List<string> fullResult = new();
 for (BigInteger number = startNumber; number <= endNumber; number += 2)
