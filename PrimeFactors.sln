@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.37710.0 d17.14
+VisualStudioVersion = 17.14.37710.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeFactors", "PrimeFactors\PrimeFactors.csproj", "{00F61039-EE1B-4039-9767-08456B11EA8E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeWithDynamicSearch", "PrimeWithDynamicSearch\PrimeWithDynamicSearch.csproj", "{D08EA5D5-6E6D-422D-AB86-DDF8321FEF0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchForBigIntegerPrime", "SearchForBigIntegerPrime\SearchForBigIntegerPrime.csproj", "{A2C704AE-FCA9-4111-83D6-239C18E47AFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{D08EA5D5-6E6D-422D-AB86-DDF8321FEF0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D08EA5D5-6E6D-422D-AB86-DDF8321FEF0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D08EA5D5-6E6D-422D-AB86-DDF8321FEF0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2C704AE-FCA9-4111-83D6-239C18E47AFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2C704AE-FCA9-4111-83D6-239C18E47AFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2C704AE-FCA9-4111-83D6-239C18E47AFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2C704AE-FCA9-4111-83D6-239C18E47AFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

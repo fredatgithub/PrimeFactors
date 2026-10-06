@@ -1,0 +1,112 @@
+﻿using System.Numerics;
+
+Console.WriteLine("Search for BigInteger Prime");
+Action<string> print = Console.WriteLine;
+Action<string> printWithoutLineFeed = Console.Write;
+
+print("Recherche des facteurs diviseurs d'un nombre");
+
+BigInteger startNumber = 2;
+BigInteger endNumber = 1_000;
+
+List<string> fullResult = [];
+for (BigInteger number = startNumber; number <= endNumber; number++)
+{
+  DetectPrimeFactors(number, print);
+  fullResult.Add(PrimeAllFactors(number));
+}
+
+string PrimeAllFactors(BigInteger number)
+{
+  string result = string.Empty;
+  if (number <= 1)
+  {
+    return $"{number};false";
+  }
+
+  if (IsPrime(number))
+  {
+    return $"{number};true";
+  }
+
+  var divisors = new List<BigInteger>();
+  for (BigInteger divisor = 2; divisor <= number; divisor++)
+  {
+    if (number % divisor == 0 && number != divisor)
+    {
+      divisors.Add(divisor);
+    }
+  }
+
+  return $"{number};false;{string.Join(";", divisors)}";
+}
+
+void DetectPrimeFactors(BigInteger number, Action<string> print)
+{
+  if (IsPrime(number))
+  {
+    print($"{number};True");
+    return;
+  }
+
+  PrintWithoutLineFeed($"{number};False;");
+  for (BigInteger divisor = 2; divisor <= number; divisor++)
+  {
+    if (IsPrime(divisor) && number % divisor == 0)
+    {
+      PrintWithoutLineFeed($"{divisor};");
+    }
+  }
+
+  print(string.Empty); // New line after printing all prime factors
+}
+
+void PrintWithoutLineFeed(string message)
+{
+  Console.WriteLine(message);
+}
+
+// saving the results to a file
+string filePath = $"NumberFactors_{endNumber}.csv";
+File.WriteAllLines(filePath, fullResult);
+print("Results saved to file: " + filePath);
+print("Press any key to exit...");
+Console.ReadKey();
+
+
+/// <summary>Calculate if a big Integer number is prime.</summary>
+/// <param name="number">The number to calculate its primality.</param>
+/// <returns>Returns True if the number is a prime, False otherwise.</returns>
+static bool IsPrime(BigInteger number)
+{
+  if (number.IsEven && number != 2) // even numbers are not prime except 2
+  {
+    return false;
+  }
+
+  if (number.Sign == 0 || number.Sign == -1)
+  {
+    return false; // calculate only positive numbers
+  }
+
+  if (number == 2 || number == 3 || number == 5 || number == 7)
+  {
+    return true;
+  }
+
+  if (number % 2 == 0 || number % 3 == 0 || number % 5 == 0 || number % 7 == 0)
+  {
+    return false;
+  }
+
+  BigInteger squareRoot = (BigInteger)Math.Pow(Math.E, BigInteger.Log(number) / 2);
+  for (BigInteger divisor = 11; divisor < squareRoot; divisor += 2)
+  {
+    if (number % divisor == 0)
+    {
+      return false;
+    }
+  }
+
+  return true;
+}
