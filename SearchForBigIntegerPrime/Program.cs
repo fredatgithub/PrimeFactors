@@ -1,20 +1,28 @@
 ﻿using System.Numerics;
 
-Console.WriteLine("Search for BigInteger Prime");
 Action<string> print = Console.WriteLine;
 Action<string> printWithoutLineFeed = Console.Write;
+print("Search for BigInteger Prime");
 
 print("Recherche des facteurs diviseurs d'un nombre");
 
-BigInteger startNumber = 2;
-BigInteger endNumber = 1_000;
+BigInteger startNumber = 3;
+BigInteger endNumber = 1_000_000;
 
 List<string> fullResult = [];
-for (BigInteger number = startNumber; number <= endNumber; number++)
+for (BigInteger number = startNumber; number <= endNumber; number += 2)
 {
-  DetectPrimeFactors(number, print);
+  // DetectPrimeFactors(number, print);
   fullResult.Add(PrimeAllFactors(number));
+  print(number.ToString());
 }
+
+// saving the results to a file
+string filePath = $"NumberFactors_{endNumber}.csv";
+File.WriteAllLines(filePath, fullResult);
+print("Results saved to file: " + filePath);
+print("Press any key to exit...");
+Console.ReadKey();
 
 string PrimeAllFactors(BigInteger number)
 {
@@ -65,14 +73,6 @@ void PrintWithoutLineFeed(string message)
 {
   Console.WriteLine(message);
 }
-
-// saving the results to a file
-string filePath = $"NumberFactors_{endNumber}.csv";
-File.WriteAllLines(filePath, fullResult);
-print("Results saved to file: " + filePath);
-print("Press any key to exit...");
-Console.ReadKey();
-
 
 /// <summary>Calculate if a big Integer number is prime.</summary>
 /// <param name="number">The number to calculate its primality.</param>
