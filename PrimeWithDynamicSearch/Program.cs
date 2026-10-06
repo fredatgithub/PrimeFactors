@@ -6,7 +6,7 @@
     {
       Action<string> print = Console.WriteLine;
       print("Recherche des nombres premiers plus rapidement");
-      const int endNumber = 1_000_000;
+      const int endNumber = 10_000_000; // 10_000_000;
       var possibleDivisors = new List<int> { 2, 3, 5, 7 };
       print($"2 est premier avec une liste de diviseur possible de {possibleDivisors.Count}");
       for (int i = 3; i <= endNumber; i += 2)
@@ -46,6 +46,11 @@
 
       foreach (int divisor in possibleDivisors)
       {
+        if (divisor * divisor > number)
+        {
+          break;
+        }
+
         if (number % divisor == 0)
         {
           return false;
