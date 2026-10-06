@@ -21,6 +21,9 @@
         }
       }
 
+      // on écrit les résultats dans un fichier
+      string filePath = $"PrimeNumbers_{endNumber}.txt";
+      File.WriteAllLines(filePath, possibleDivisors.Select(x => x.ToString()));
       print("Press any key to exit...");
       Console.ReadKey();
     }
