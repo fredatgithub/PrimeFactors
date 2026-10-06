@@ -6,10 +6,10 @@ print("Search for BigInteger Prime");
 
 print("Recherche des facteurs diviseurs d'un nombre");
 
-BigInteger startNumber = 3;
-BigInteger endNumber = 1_000_000;
+BigInteger startNumber = ulong.MaxValue;
+BigInteger endNumber = startNumber + 100;
 
-List<string> fullResult = [];
+List<string> fullResult = new();
 for (BigInteger number = startNumber; number <= endNumber; number += 2)
 {
   // DetectPrimeFactors(number, print);
@@ -26,7 +26,6 @@ Console.ReadKey();
 
 string PrimeAllFactors(BigInteger number)
 {
-  string result = string.Empty;
   if (number <= 1)
   {
     return $"{number};false";
@@ -99,9 +98,41 @@ static bool IsPrime(BigInteger number)
     return false;
   }
 
-  BigInteger squareRoot = (BigInteger)Math.Pow(Math.E, BigInteger.Log(number) / 2);
-  for (BigInteger divisor = 11; divisor < squareRoot; divisor += 2)
+  for (BigInteger divisor = 11; divisor * divisor <= number; divisor += 2)
   {
+    if (number % divisor == 0)
+    {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+static bool IsPrimeWithPossibleDivisors(BigInteger number, List<BigInteger> possibleDivisors)
+{
+  if (number.IsEven && number != 2) // even numbers are not prime except 2
+  {
+    return false;
+  }
+
+  if (number.Sign == 0 || number.Sign == -1)
+  {
+    return false; // calculate only positive numbers
+  }
+
+  if (possibleDivisors.Contains(number))
+  {
+    return true;
+  }
+
+  foreach (BigInteger divisor in possibleDivisors)
+  {
+    if (divisor * divisor > number)
+    {
+      break;
+    }
+
     if (number % divisor == 0)
     {
       return false;
