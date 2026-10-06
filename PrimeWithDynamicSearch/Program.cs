@@ -2,9 +2,54 @@
 {
   internal class Program
   {
-    static void Main(string[] args)
+    static void Main()
     {
-      Console.WriteLine("On enlève les facteurs se terminant par 5");
+      Action<string> print = Console.WriteLine;
+      print("Recherche des nombres premiers plus rapidement");
+      const int endNumber = 1_000_000;
+      var possibleDivisors = new List<int> { 2, 3, 5, 7 };
+      print($"2 est premier avec une liste de diviseur possible de {possibleDivisors.Count}");
+      for (int i = 3; i <= endNumber; i += 2)
+      {
+        if (IsPrime(i, possibleDivisors))
+        {
+          print($"{i} est premier avec une liste de diviseur possible de {possibleDivisors.Count}");
+          if (!possibleDivisors.Contains(i))
+          {
+            possibleDivisors.Add(i);
+          }
+        }
+      }
+
+      print("Press any key to exit...");
+      Console.ReadKey();
+    }
+
+    /// <summary>Calculate if an Integer number is prime.</summary>
+    /// <param name="number">The number to calculate its primality.</param>
+    /// <param name="possibleDivisors">A list of possible divisors to check for primality.</param>
+    /// <returns>Returns True if the number is a prime, False otherwise.</returns>
+    public static bool IsPrime(int number, List<int> possibleDivisors)
+    {
+      if (number <= 1)
+      {
+        return false;
+      }
+
+      if (possibleDivisors.Contains(number))
+      {
+        return true;
+      }
+
+      foreach (int divisor in possibleDivisors)
+      {
+        if (number % divisor == 0)
+        {
+          return false;
+        }
+      }
+
+      return true;
     }
   }
 }
