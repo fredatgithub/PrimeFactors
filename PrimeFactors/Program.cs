@@ -9,9 +9,9 @@ namespace PrimeFactors
       Action<string> print = Console.WriteLine;
       Action<string> printWithoutLineFeed = Console.Write;
       print("Recherche des facteurs diviseurs d'un nombre");
-      const int endNumber = 1_048_573; // 1_048_573 is a prime number and is the last number of Excel 2007
+      const int endNumber = 1_048_574; // 1_048_573 is a prime number and is the last number of Excel 2007
       var fullResult = new List<string>();
-      for (int number = 2; number <= endNumber; number++)
+      for (int number = 3; number <= endNumber; number +=2)
       {
         DetectPrimeFactors(number, print);
         fullResult.Add(PrimeAllFactors(number));
